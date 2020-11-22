@@ -35,7 +35,8 @@
  *  @{ */
 
 #include "common/tusb_common.h"
-
+#include "tusb_config.h"
+ 
 // Return immediately
 #define OSAL_TIMEOUT_NOTIMEOUT     (0)
 // Default timeout

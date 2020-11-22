@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+#include "Adafruit_TinyUSB_TeensyCore.h"
 #ifdef USE_TINYUSB
 
 #include "Arduino.h"
@@ -30,7 +31,7 @@
 #define EPOUT   0x00
 #define EPIN    0x80
 
-Adafruit_USBD_CDC Serial;
+Adafruit_USBD_CDC USBSerial;
 
 Adafruit_USBD_CDC::Adafruit_USBD_CDC(void)
 {
@@ -41,7 +42,7 @@ uint16_t Adafruit_USBD_CDC::getDescriptor(uint8_t itfnum, uint8_t* buf, uint16_t
 {
   // CDC is mostly always existed for DFU
   // usb core will automatically update endpoint number
-  uint8_t desc[] = { TUD_CDC_DESCRIPTOR(itfnum, 0, EPIN, 8, EPOUT, EPIN, 64) };
+  uint8_t desc[] = { TUD_CDC_DESCRIPTOR(itfnum, 0, EPIN, 8, EPOUT, EPIN, 512) };
   uint16_t const len = sizeof(desc);
 
   if ( bufsize < len ) return 0;

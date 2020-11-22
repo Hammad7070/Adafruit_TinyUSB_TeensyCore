@@ -63,6 +63,6 @@ public:
 	operator bool();
 };
 
-extern Adafruit_USBD_CDC Serial;
+extern Adafruit_USBD_CDC USBSerial;
 
 #endif /* ADAFRUIT_USBD_CDC_H_ */

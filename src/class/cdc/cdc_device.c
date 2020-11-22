@@ -25,10 +25,10 @@
  */
 
 #include "tusb_option.h"
+#include "cdc_device.h"
 
 #if (TUSB_OPT_DEVICE_ENABLED && CFG_TUD_CDC)
 
-#include "cdc_device.h"
 #include "device/usbd_pvt.h"
 
 //--------------------------------------------------------------------+
@@ -160,13 +160,12 @@ uint32_t tud_cdc_n_write(uint8_t itf, void const* buffer, uint32_t bufsize)
   cdcd_interface_t* p_cdc = &_cdcd_itf[itf];
   uint16_t ret = tu_fifo_write_n(&p_cdc->tx_ff, buffer, bufsize);
 
-#if 0 // TODO issue with circuitpython's REPL
+  // TODO issue with circuitpython's REPL
   // flush if queue more than endpoint size
   if ( tu_fifo_count(&p_cdc->tx_ff) >= CFG_TUD_CDC_EP_BUFSIZE )
   {
     tud_cdc_n_write_flush(itf);
   }
-#endif
 
   return ret;
 }

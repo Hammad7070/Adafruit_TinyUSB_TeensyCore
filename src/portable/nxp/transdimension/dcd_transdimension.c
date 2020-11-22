@@ -37,7 +37,19 @@
 #include "device/dcd.h"
 
 #if CFG_TUSB_MCU == OPT_MCU_MIMXRT10XX
-  #include "fsl_device_registers.h"
+//  #include "fsl_device_registers.h"
+  #include "imxrt.h"
+  #define     __I     volatile const       // defines 'read only' permissions
+  #define     __O     volatile             // defines 'write only' permissions
+  #define     __IO    volatile             // defines 'read / write' permissions
+  #define FSL_FEATURE_SOC_USBHS_COUNT 2
+  #define USB1_BASE &IMXRT_USB1
+  #define USB2_BASE &IMXRT_USB2
+  #define USB_OTG1_IRQn IRQ_USB1
+  #define USB_OTG2_IRQn IRQ_USB2
+  #define NVIC_EnableIRQ NVIC_ENABLE_IRQ
+  #define NVIC_DisableIRQ NVIC_DISABLE_IRQ
+  typedef enum IRQ_NUMBER_t IRQn_Type;
 #else
   // LPCOpen for 18xx & 43xx
   #include "chip.h"

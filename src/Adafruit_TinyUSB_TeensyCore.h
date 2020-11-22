@@ -25,8 +25,16 @@
 #ifndef ADAFRUIT_TINYUSB_CORE_H_
 #define ADAFRUIT_TINYUSB_CORE_H_
 
+#if defined(USB_DISABLED)
+  #define USE_TINYUSB
+  #if defined(ARDUINO_TEENSY41)
+    #define USB_VID        0x16C0
+    #define USB_PID        0x0483
+  #endif
+#endif
+
 #ifndef USE_TINYUSB
-#error TinyUSB is not selected, please select it in Tools->Menu->USB Stack
+#error "No USB" is not selected, please select it in Tools->USB Type
 #endif
 
 #include "tusb.h"
