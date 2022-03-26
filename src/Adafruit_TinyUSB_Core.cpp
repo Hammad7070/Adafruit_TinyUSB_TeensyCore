@@ -25,6 +25,7 @@
 #include "Adafruit_TinyUSB_TeensyCore.h"
 
 #ifdef USE_TINYUSB
+#ifdef USE_TINYWEBUSB
 
 #include "Arduino.h"
 //#include <Reset.h> // Needed for auto-reset with 1200bps port touch
@@ -146,7 +147,7 @@ static void usb_hardware_init(void)
   USBPHY1_PWD = 0;
   
   attachInterruptVector(IRQ_USB1, &USB_Handler);
-  NVIC_SET_PRIORITY(IRQ_USB1, 0);
+ NVIC_SET_PRIORITY(IRQ_USB1, 0);
 //	/* Enable USB clock */
 //#if defined(__SAMD51__)
 //	MCLK->APBBMASK.reg |= MCLK_APBBMASK_USB;
